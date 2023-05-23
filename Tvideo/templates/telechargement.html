@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Téléchargement de fichiers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        input[type="file"] {
+            margin-top: 10px;
+        }
+
+        input[type="submit"] {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Téléchargement de fichiers</h1>
+    <form method="post" enctype="multipart/form-data" action="{% url 'telechargement' %}">
+        {% csrf_token %}
+        
+        <input type="file" name="fichier">
+        <input type="submit" value="Télécharger">
+    </form>
+</body>
+
+</html>

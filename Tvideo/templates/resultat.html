@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Résultat du traitement</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 30px;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        audio,
+        video {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Résultat du traitement</h1>
+    {% if texte_resultat %}
+        <h2>Texte généré :</h2>
+        <p>{{ texte_resultat }}</p>
+    {% endif %}
+    {% if fichiers %}
+    <h2>Audio généré :</h2>
+        {% for fichier in fichiers %}
+        <audio controls>
+            <source src="{{ fichier.fichier_audio.url }}" type="audio/mpeg">
+            Votre navigateur ne supporte pas l'élément audio.
+        </audio>
+        {% endfor %}
+    {% endif %}
+
+    {% if lien_video %}
+        <h2>Vidéo générée :</h2>
+        <video controls>
+            <source src="{{ lien_video }}" type="video/mp4">
+            Votre navigateur ne supporte pas l'élément vidéo.
+        </video>
+    {% endif %}
+</body>
+</html>
