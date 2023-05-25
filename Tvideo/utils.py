@@ -42,4 +42,31 @@ def generate_audio(texte_traduit, langue, generated_audio):
     
     return filepath
 
+from moviepy.editor import TextClip, CompositeVideoClip, concatenate_videoclips, VideoFileClip, AudioFileClip
 
+def generate_video(texte, langue, fichier_video, video_path):
+    # Générer l'audio avec gTTS
+    audio_path = os.path.join(settings.MEDIA_ROOT, '', 'translated_audio.mp3')
+    tts = gTTS(text=texte, lang=langue)
+    tts.save(audio_path)
+    
+    # Charger l'audio et la vidéo d'entrée
+    audio = AudioFileClip(audio_path)
+    video = VideoFileClip(fichier_video)
+    
+    # Ajuster la durée de l'audio à la durée de la vidéo
+    audio = audio.set_duration(video.duration)
+    
+    # Ajouter l'audio à la vidéo
+    video_with_audio = video.set_audio(audio)
+    
+    # Déterminer le chemin complet du fichier vidéo généré
+    generated_video_path = os.path.join(settings.MEDIA_ROOT, '', video_path)
+    
+    # Sauvegarder la vidéo finale
+    video_with_audio.write_videofile(generated_video_path, codec="libx264", audio_codec="aac")
+    
+    # Supprimer le fichier audio temporaire
+    #os.remove(audio_path)
+    
+    return generated_video_path

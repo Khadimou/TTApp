@@ -36,9 +36,16 @@
     <form method="post" enctype="multipart/form-data" action="{% url 'telechargement' %}">
         {% csrf_token %}
         
+        <label for="choix">Choisir le type de fichier :</label>
+        <select name="choix" id="choix">
+            <option value="audio">Audio</option>
+            <option value="video">Vidéo</option>
+        </select>
+        
         <input type="file" name="fichier">
-        <input type="submit" value="Télécharger">
+        <input type="submit" value="Translate">
     </form>
 </body>
+
 
 </html>
