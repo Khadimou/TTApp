@@ -31,25 +31,34 @@
 <body>
     <h1>Résultat du traitement</h1>
    
-    {% if fichiers %}
-    <h2>Fichiers générés :</h2>
-    {% for fichier in fichiers %}
-        {% if fichier.fichier_audio %}
-            <h3>Audio :</h3>
-            <audio controls>
-                <source src="{{ fichier.fichier_audio.url }}" type="audio/mpeg">
-                Votre navigateur ne supporte pas l'élément audio.
-            </audio>
-        {% endif %}
-        {% if fichier.fichier_video %}
-            <h3>Vidéo :</h3>
-            <video controls>
-                <source src="{{ fichier.fichier_video.url }}" type="video/mp4">
-                Votre navigateur ne supporte pas l'élément vidéo.
-            </video>
+    {% if audio_fichiers %}
+    <h2>Fichiers audio :</h2>
+    {% for fichier in audio_fichiers %}
+        {% if forloop.last %} {# Vérifie si c'est le dernier élément de la boucle #}
+            {% if fichier.fichier_audio %}
+                <audio controls>
+                    <source src="{{ fichier.fichier_audio.url }}" type="audio/mpeg">
+                    Votre navigateur ne supporte pas l'élément audio.
+                </audio>
+            {% endif %}
         {% endif %}
     {% endfor %}
     {% endif %}
+
+    {% if video_fichiers %}
+    <h2>Fichiers video :</h2>
+    {% for fichier in video_fichiers %}
+        {% if forloop.last %} {# Vérifie si c'est le dernier élément de la boucle #}
+            {% if fichier.fichier_video %}
+                <video controls>
+                    <source src="{{ fichier.fichier_video.url }}" type="audio/mpeg">
+                    Votre navigateur ne supporte pas l'élément audio.
+                </video>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+    {% endif %}
+
 
     {% if audio_url %}
         <h2>URL audio :</h2>

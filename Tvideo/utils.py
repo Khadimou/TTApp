@@ -5,6 +5,22 @@ import whisper
 from django.conf import settings
 import os
 
+def detect_language(media):
+    model = whisper.load_model("base")
+
+    # load audio and pad/trim it to fit 30 seconds
+    audio = whisper.load_audio(media)
+    audio = whisper.pad_or_trim(audio)
+
+    # make log-Mel spectrogram and move to the same device as the model
+    mel = whisper.log_mel_spectrogram(audio).to(model.device)
+
+    # detect the spoken language
+    _, probs = model.detect_language(mel)
+    #print(f"Detected language: {max(probs, key=probs.get)}")
+
+    return max(probs, key=probs.get)
+
 
 def translate_text(text, lang):
     max_chars = 500

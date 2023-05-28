@@ -15,16 +15,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from Tvideo import views
-# urls.py
-
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.accueil, name='accueil'),  # URL pattern pour la page d'accueil
-    path('telechargement/', views.telechargement_vue, name='telechargement'),
-    path('resultat/', views.resultat, name='resultat'),
+    path('', include('Tvideo.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
