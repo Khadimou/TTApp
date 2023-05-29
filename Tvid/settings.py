@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-@sd-yu50b!(r$o@#tho=bjwt1)xmavci&_qk_!_uttv$i8&#@3"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = 45485760  # 10 Mo en octets
 
@@ -58,7 +58,7 @@ ROOT_URLCONF = "Tvid.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "templates"],
+        "DIRS": [],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -119,6 +119,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
+STATICFILES_DIRS = [
+    
+]
 
 # ...
 
@@ -133,11 +136,8 @@ FILE_UPLOAD_PERMISSIONS = 0o644  # Exemple de permissions : 644 (-rw-r--r--)
 FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0o755  # Exemple de permissions : 755 (drwxr-xr-x)
 
 STATIC_URL = '/static/'
-
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_DIRS = [BASE_DIR / 'static']
 
-MEDIA_URL = '/audio/'
-MEDIA_ROOT = BASE_DIR / 'audio'
-
+MEDIA_URL = '/staticfiles/audio/'
+MEDIA_ROOT = BASE_DIR / 'staticfiles' / 'audio'
 
