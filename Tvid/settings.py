@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-@sd-yu50b!(r$o@#tho=bjwt1)xmavci&_qk_!_uttv$i8&#@3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['167.71.55.34']
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = 45485760  # 10 Mo en octets
 
@@ -77,10 +77,22 @@ WSGI_APPLICATION = "Tvid.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+if DEBUG:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
+else:
+    DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'tekkimeu',
+        'USER': 'app_admin',
+        'PASSWORD': 'bismillah',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
