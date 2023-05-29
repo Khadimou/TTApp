@@ -1,0 +1,22 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detect Language</title>
+</head>
+<body>
+    <h1>Detection de la langue</h1>
+
+    <div class="content">
+        <!-- Contenu de la page Detect Language -->
+        <form method="post" action="{% url 'detect_lang' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p>Download your file</p>
+            <input type="file" name="fichier">
+            <input type="submit" value="Detect">
+        </form>
+    </div>
+    
+</body>
+</html>
