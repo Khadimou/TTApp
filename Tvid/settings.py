@@ -58,7 +58,7 @@ ROOT_URLCONF = "Tvid.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -119,9 +119,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATICFILES_DIRS = [
-    
-]
 
 # ...
 
@@ -136,8 +133,11 @@ FILE_UPLOAD_PERMISSIONS = 0o644  # Exemple de permissions : 644 (-rw-r--r--)
 FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0o755  # Exemple de permissions : 755 (drwxr-xr-x)
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-MEDIA_URL = '/staticfiles/audio/'
-MEDIA_ROOT = BASE_DIR / 'staticfiles' / 'audio'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+
+MEDIA_URL = '/audio/'
+MEDIA_ROOT = BASE_DIR / 'audio'
+
 
