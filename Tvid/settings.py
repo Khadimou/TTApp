@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os 
+import dj_database_url
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +28,7 @@ SECRET_KEY = "django-insecure-@sd-yu50b!(r$o@#tho=bjwt1)xmavci&_qk_!_uttv$i8&#@3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['161.35.72.151']
+ALLOWED_HOSTS = ['*']
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = 200 * 1024 * 1024  # 200 megabytes
 
@@ -153,3 +155,4 @@ STATIC_ROOT = BASE_DIR / 'static'
 MEDIA_URL = '/static/audio/'
 MEDIA_ROOT = BASE_DIR / 'static' / 'audio'
 
+django_heroku.settings(locals())
