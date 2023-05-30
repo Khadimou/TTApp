@@ -28,7 +28,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['161.35.72.151']
 
-DATA_UPLOAD_MAX_MEMORY_SIZE = 45485760  # 10 Mo en octets
+DATA_UPLOAD_MAX_MEMORY_SIZE = 200 * 1024 * 1024  # 200 megabytes
 
 
 # Application definition
