@@ -148,8 +148,8 @@ FILE_UPLOAD_PERMISSIONS = 0o644  # Exemple de permissions : 644 (-rw-r--r--)
 FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0o755  # Exemple de permissions : 755 (drwxr-xr-x)
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / 'static'
 
-MEDIA_URL = '/staticfiles/audio/'
-MEDIA_ROOT = BASE_DIR / 'staticfiles' / 'audio'
+MEDIA_URL = '/static/audio/'
+MEDIA_ROOT = BASE_DIR / 'static' / 'audio'
 
