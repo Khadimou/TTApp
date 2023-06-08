@@ -40,6 +40,7 @@
                     <source src="{{ fichier.fichier_audio.url }}" type="audio/mpeg">
                     Votre navigateur ne supporte pas l'élément audio.
                 </audio>
+                <a href="{{ fichier.fichier_audio.url }}" download="audio.mp3">Télécharger l'audio</a>
             {% endif %}
         {% endif %}
     {% endfor %}
@@ -54,15 +55,10 @@
                     <source src="{{ fichier.fichier_video.url }}" type="audio/mpeg">
                     Votre navigateur ne supporte pas l'élément audio.
                 </video>
+                <a href="{{ fichier.fichier_video.url }}" download="video.mp4">Télécharger la vidéo</a>
             {% endif %}
         {% endif %}
     {% endfor %}
-    {% endif %}
-
-
-    {% if audio_url %}
-        <h2>URL audio :</h2>
-        <p>{{ audio_url }}</p>
     {% endif %}
 
 </body>

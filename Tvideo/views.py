@@ -16,23 +16,44 @@ def resultat(request):
 from django.shortcuts import render
 
 import os
+from pytube import YouTube
 
 def detect_lang(request):
     if request.method == 'POST':
-        # Récupérer le fichier envoyé par le formulaire
-        fichier = request.FILES['fichier']
-        # Enregistrer le fichier temporaire sur le système de fichiers
-        with open('tempfile', 'wb') as temp_file:
-            for chunk in fichier.chunks():
-                temp_file.write(chunk)
-        # Obtenir le chemin du fichier temporaire
-        fichier_path = os.path.abspath('tempfile')
-        langue_detectee = detect_language(fichier_path)
+        input_type = request.POST.get('input_type')  # Récupérer le type d'entrée choisi
+        
+        if input_type == 'file':
+            # Récupérer le fichier envoyé par le formulaire
+            fichier = request.FILES['fichier']
+            # Enregistrer le fichier temporaire sur le système de fichiers
+            with open('tempfile', 'wb') as temp_file:
+                for chunk in fichier.chunks():
+                    temp_file.write(chunk)
+            # Obtenir le chemin du fichier temporaire
+            fichier_path = os.path.abspath('tempfile')
+            langue_detectee = detect_language(fichier_path)
+        elif input_type == 'url':
+            fichier_url = request.POST.get('fichier_url')  # Récupérer l'URL du fichier
+            
+            try:
+                yt = YouTube(fichier_url)
+                stream = yt.streams.filter(only_audio=True).first()
+                # Enregistrer le fichier audio temporaire sur le système de fichiers
+                fichier_path = stream.download(output_path='.', filename='tempfile')
+                langue_detectee = detect_language(fichier_path)
+            except:
+                # Gérer le cas où l'URL de la vidéo YouTube est invalide ou le téléchargement échoue
+                return render(request, 'invalid_url.html')
+        else:
+            # Gérer le cas où le type d'entrée n'est pas spécifié ou inconnu
+            return render(request, 'invalid_input_type.html')
 
         # Retourner les résultats ou effectuer une redirection
         return render(request, 'resultats_detect_language.html', {'langue_detectee': langue_detectee})
 
     return render(request, 'detect_language.html')
+
+
 
 
 def resultats_detect_language(request, resultats):

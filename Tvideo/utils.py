@@ -53,7 +53,7 @@ def generate_audio(texte_traduit, langue, generated_audio):
 
     # Génération du fichier audio en utilisant gTTS
     tts = gTTS(text=texte_traduit, lang=langue) 
-    filepath = os.path.join(settings.STATIC_ROOT, 'audio', generated_audio)
+    filepath = os.path.join(settings.MEDIA_ROOT, 'audio', generated_audio)
     tts.save(filepath)  
     
     return filepath

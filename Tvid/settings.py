@@ -12,12 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os 
-import dj_database_url
-import django_heroku
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -26,9 +22,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-@sd-yu50b!(r$o@#tho=bjwt1)xmavci&_qk_!_uttv$i8&#@3"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = 200 * 1024 * 1024  # 200 megabytes
 
@@ -68,6 +64,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "django.template.context_processors.media"
             ],
         },
     },
@@ -152,7 +149,5 @@ FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0o755  # Exemple de permissions : 755 (drwxr
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'static'
 
-MEDIA_URL = '/static/audio/'
-MEDIA_ROOT = BASE_DIR / 'static' / 'audio'
-
-django_heroku.settings(locals())
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media' 

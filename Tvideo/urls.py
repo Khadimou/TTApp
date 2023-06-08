@@ -10,4 +10,4 @@ urlpatterns = [
     path('resultat/', views.resultat, name='resultat'),
     path('detect_lang/', views.detect_lang, name='detect_lang'),
     path('resultats_detect_language/<str:resultats>/', views.resultats_detect_language, name='resultats_detect_language'),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

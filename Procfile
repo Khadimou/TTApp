@@ -1,1 +1,0 @@
-web gunicorn TTAPP.wsgi:application --log-file -
