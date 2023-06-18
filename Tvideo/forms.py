@@ -42,10 +42,24 @@ LANGUAGES = [
 ]
 
 
+CHOICES = [
+    ('audio', 'Audio'),
+    ('video', 'Vidéo'),
+    ('texte', 'Texte'),
+]
+
 class FichierForm(forms.Form):
     fichier = forms.FileField(label='Fichier')
-    choix = forms.ChoiceField(choices=[('audio', 'Audio'), ('video', 'Vidéo')])
+    choix = forms.ChoiceField(choices=CHOICES)
     langue = forms.ChoiceField(choices=LANGUAGES, label='Langue de traduction')
+
+class LinkForm(forms.Form):
+    fichier_url = forms.CharField(max_length=200, required=True)
+    choix_link = forms.ChoiceField(choices=CHOICES)
+    langue_traduction = forms.ChoiceField(label='Langue de traduction', choices=LANGUAGES)
+
+
+
 
 class VideoForm(forms.Form):
     fichier_video = forms.FileField(label='Sélectionner une vidéo')

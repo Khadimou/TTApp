@@ -43,6 +43,7 @@
         <select name="choix" id="choix">
             <option value="audio">Audio</option>
             <option value="video">Vidéo</option>
+            <option value="texte">Texte</option>
         </select>
         
         {% if choix == "audio" %} {# Vérifie si le choix est "audio" #}
@@ -61,6 +62,9 @@
                 <source src="{{ fichier.url }}" type="video/mp4">
                 Votre navigateur ne supporte pas l'élément vidéo.
             </video>
+        {% elif choix == "texte" %} {# Vérifie si le choix est "texte" #}
+            <label for="texte">Saisir un texte :</label>
+            <textarea name="texte" id="texte" rows="4" cols="50"></textarea>
         {% endif %}
         
         <input type="file" name="fichier">
